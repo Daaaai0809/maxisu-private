@@ -15,6 +15,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"encoding/json"
 
 	"github.com/bradfitz/gomemcache/memcache"
 	gsm "github.com/bradleypeabody/gorilla-sessions-memcache"
@@ -27,6 +28,7 @@ import (
 var (
 	db    *sqlx.DB
 	store *gsm.MemcacheStore
+	mc   *memcache.Client
 )
 
 const (
@@ -66,6 +68,24 @@ type Comment struct {
 	User      User
 }
 
+type CachePosts []Post
+
+func MarshalBinary(d any) ([]byte, error) {
+    data, err := json.Marshal(d)
+    if err != nil {
+        return nil, err
+    }
+    return data, nil
+}
+
+func UnmarshalBinary(b []byte, data any) error {
+    // バイトスライスからユーザー定義型にデコードする処理を行います。
+    if err := json.Unmarshal(b, data); err != nil {
+        return err
+    }
+    return nil
+}
+
 func init() {
 	memdAddr := os.Getenv("ISUCONP_MEMCACHED_ADDRESS")
 	if memdAddr == "" {
@@ -74,6 +94,7 @@ func init() {
 	memcacheClient := memcache.New(memdAddr)
 	store = gsm.NewMemcacheStore(memcacheClient, "iscogram_", []byte("sendagaya"))
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
+	mc = memcache.New("localhost:11211")
 }
 
 func dbInitialize() {
@@ -86,6 +107,7 @@ func dbInitialize() {
 		"CREATE INDEX comments_post_id_idx ON comments (post_id)",
 		"CREATE INDEX comments_user_id_idx ON comments (user_id)",
 		"CREATE INDEX posts_user_id_idx ON posts (user_id)",
+		"CREATE INDEX posts_created_at_idx ON posts (created_at DESC)",
 	}
 
 	for _, sql := range sqls {
@@ -208,11 +230,6 @@ func makePosts(results []Post, csrfToken string, allComments bool) ([]Post, erro
 		}
 
 		p.Comments = comments
-
-		err = db.Get(&p.User, "SELECT * FROM `users` WHERE `id` = ?", p.UserID)
-		if err != nil {
-			return nil, err
-		}
 
 		p.CSRFToken = csrfToken
 
@@ -391,7 +408,8 @@ func getIndex(w http.ResponseWriter, r *http.Request) {
 
 	results := []Post{}
 
-	err := db.Select(&results, "SELECT `id`, `user_id`, `body`, `mime`, `created_at` FROM `posts` ORDER BY `created_at` DESC")
+	// TODO: post/user感のN + 1改善
+	err := db.Select(&results, "SELECT p.id, p.user_id, p.body, p.mime, p.created_at FROM posts p LEFT JOIN users u ON p.user_id = u.id WHERE u.del_flg = 0 ORDER BY p.created_at DESC LIMIT 20")
 	if err != nil {
 		log.Print(err)
 		return
@@ -524,40 +542,9 @@ func getPosts(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	results := []Post{}
-	err = db.Select(&results, "SELECT
-		p.id AS post_id,
-		p.user_id,
-		p.body,
-		p.mime,
-		p.created_at AS post_created_at,
-		COUNT(c.id) AS comment_count,
-		u.id AS user_id,
-		u.account_name,
-		u.authority,
-		u.del_flg,
-		u.created_at AS user_created_at,
-		c.id AS comment_id,
-		c.comment,
-		c.created_at AS comment_created_at
-		FROM
-		posts p
-		LEFT JOIN
-		comments c ON p.id = c.post_id
-		LEFT JOIN
-		users u ON c.user_id = u.id
-		WHERE
-		p.created_at <= ?
-		GROUP BY
-		p.id, c.id
-		ORDER BY
-		p.created_at DESC, c.created_at DESC", t.Format(ISO8601Format))
-	if err != nil {
-		log.Print(err)
-		return
-	}
+	posts := []Post{}
 
-	posts, err := makePosts(results, getCSRFToken(r), false)
+	err = db.Select(&posts, "SELECT `id`, `user_id`, `body`, `mime`, `created_at` FROM `posts` WHERE `created_at` <= ? ORDER BY `created_at` DESC", t.Format(ISO8601Format))
 	if err != nil {
 		log.Print(err)
 		return
@@ -711,6 +698,7 @@ func getImage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	post := Post{}
+
 	err = db.Get(&post, "SELECT * FROM `posts` WHERE `id` = ?", pid)
 	if err != nil {
 		log.Print(err)
@@ -824,6 +812,8 @@ func postAdminBanned(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	defer mc.Close()
+
 	host := os.Getenv("ISUCONP_DB_HOST")
 	if host == "" {
 		host = "localhost"
