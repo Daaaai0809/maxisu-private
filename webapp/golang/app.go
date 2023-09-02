@@ -201,27 +201,46 @@ func makePosts(results []Post, csrfToken string, allComments bool) ([]Post, erro
 	
 	// TODO: N + 1改善
 	for _, p := range results {
-		err := db.Get(&p.CommentCount, "SELECT COUNT(*) AS `count` FROM `comments` WHERE `post_id` = ?", p.ID)
+		cached, err := mc.Get("comments_" + strconv.Itoa(p.ID) + "_count")
 		if err != nil {
-			return nil, err
-		}
-
-		// コメントを取得する際に一緒にユーザー情報も取得
-		query := "SELECT * FROM `comments` WHERE `post_id` = ? ORDER BY `created_at` DESC"
-		if !allComments {
-			query += " LIMIT 3"
-		}
-		var comments []Comment
-		err = db.Select(&comments, query, p.ID)
-		if err != nil {
-			return nil, err
-		}
-
-		for i := 0; i < len(comments); i++ {
-			err := db.Get(&comments[i].User, "SELECT * FROM `users` WHERE `id` = ?", comments[i].UserID)
+			err = nil
+			err = db.Get(&p.CommentCount, "SELECT COUNT(*) AS `count` FROM `comments` WHERE `post_id` = ?", p.ID)
 			if err != nil {
 				return nil, err
 			}
+			
+			// キャッシュ
+			mc.Set(&memcache.Item{Key: "comments_" + strconv.Itoa(p.ID) + "_count", Value: []byte(strconv.Itoa(p.CommentCount))})
+		} else {
+			p.CommentCount, _ = strconv.Atoi(string(cached.Value))
+		}
+		// コメントを取得する際に一緒にユーザー情報も取得
+		cached_comments, err := mc.Get("comments_" + strconv.Itoa(p.ID))
+		var comments []Comment
+		if err != nil {
+			query := "SELECT * FROM `comments` WHERE `post_id` = ? ORDER BY `created_at` DESC"
+			if !allComments {
+				query += " LIMIT 3"
+			}
+			err = db.Select(&comments, query, p.ID)
+			if err != nil {
+				return nil, err
+			}
+
+			for i := 0; i < len(comments); i++ {
+				err := db.Get(&comments[i].User, "SELECT * FROM `users` WHERE `id` = ?", comments[i].UserID)
+				if err != nil {
+					return nil, err
+				}
+			}
+
+			// キャッシュ
+			d, _ := MarshalBinary(comments)
+			mc.Set(&memcache.Item{Key: "comments_" + strconv.Itoa(p.ID), Value: d})
+		} else {
+			var comments []Comment
+			UnmarshalBinary(cached_comments.Value, &comments)
+			p.Comments = comments
 		}
 
 		// reverse
