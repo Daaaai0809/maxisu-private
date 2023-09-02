@@ -84,6 +84,8 @@ func dbInitialize() {
 		"UPDATE users SET del_flg = 0",
 		"UPDATE users SET del_flg = 1 WHERE id % 50 = 0",
 		"CREATE INDEX comments_post_id_idx ON comments (post_id)",
+		"CREATE INDEX comments_user_id_idx ON comments (user_id)",
+		"CREATE INDEX posts_user_id_idx ON posts (user_id)",
 	}
 
 	for _, sql := range sqls {
@@ -177,14 +179,14 @@ func makePosts(results []Post, csrfToken string, allComments bool) ([]Post, erro
 	
 	// TODO: N + 1改善
 	for _, p := range results {
+		// コメントのindex, comments_post_id_idxを使ってコメント数を取得する
 		err := db.Get(&p.CommentCount, "SELECT COUNT(*) AS `count` FROM `comments` WHERE `post_id` = ?", p.ID)
 		if err != nil {
 			return nil, err
 		}
 
-		// query := "SELECT * FROM `comments` WHERE `post_id` = ? ORDER BY `created_at` DESC"
 		// コメントを取得する際に一緒にユーザー情報も取得
-		query := "SELECT `comments`.*, `users`.`id` AS `user_id`, `users`.`account_name`, `users`.`authority`, `users`.`del_flg`, `users`.`created_at` FROM `comments` LEFT JOIN `users` ON `comments`.`user_id` = `users`.`id` WHERE `post_id` = ? ORDER BY `created_at` DESC"
+		query := "SELECT * FROM `comments` WHERE `post_id` = ? ORDER BY `created_at` DESC"
 		if !allComments {
 			query += " LIMIT 3"
 		}
@@ -194,12 +196,12 @@ func makePosts(results []Post, csrfToken string, allComments bool) ([]Post, erro
 			return nil, err
 		}
 
-		// for i := 0; i < len(comments); i++ {
-		// 	err := db.Get(&comments[i].User, "SELECT * FROM `users` WHERE `id` = ?", comments[i].UserID)
-		// 	if err != nil {
-		// 		return nil, err
-		// 	}
-		// }
+		for i := 0; i < len(comments); i++ {
+			err := db.Get(&comments[i].User, "SELECT * FROM `users` WHERE `id` = ?", comments[i].UserID)
+			if err != nil {
+				return nil, err
+			}
+		}
 
 		// reverse
 		for i, j := 0, len(comments)-1; i < j; i, j = i+1, j-1 {
