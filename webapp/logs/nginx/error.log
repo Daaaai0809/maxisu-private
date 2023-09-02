@@ -16,3 +16,18 @@
 2023/09/02 04:54:31 [notice] 1#1: start worker process 37
 2023/09/02 04:54:31 [notice] 1#1: start worker process 38
 2023/09/02 04:54:31 [notice] 1#1: start worker process 39
+2023/09/02 05:09:53 [notice] 40#40: signal process started
+2023/09/02 05:09:53 [notice] 1#1: signal 10 (SIGUSR1) received from 40, reopening logs
+2023/09/02 05:09:53 [notice] 1#1: reopening logs
+2023/09/02 05:09:53 [notice] 28#28: reopening logs
+2023/09/02 05:09:53 [notice] 29#29: reopening logs
+2023/09/02 05:09:53 [notice] 30#30: reopening logs
+2023/09/02 05:09:53 [notice] 31#31: reopening logs
+2023/09/02 05:09:53 [notice] 32#32: reopening logs
+2023/09/02 05:09:53 [notice] 33#33: reopening logs
+2023/09/02 05:09:53 [notice] 34#34: reopening logs
+2023/09/02 05:09:53 [notice] 35#35: reopening logs
+2023/09/02 05:09:53 [notice] 36#36: reopening logs
+2023/09/02 05:09:53 [notice] 38#38: reopening logs
+2023/09/02 05:09:53 [notice] 39#39: reopening logs
+2023/09/02 05:09:53 [notice] 37#37: reopening logs
