@@ -720,3 +720,118 @@
 2023/09/02 06:02:12 [notice] 1#1: start worker process 37
 2023/09/02 06:02:12 [notice] 1#1: start worker process 38
 2023/09/02 06:02:12 [notice] 1#1: start worker process 39
+2023/09/02 06:14:30 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2023/09/02 06:14:30 [notice] 28#28: gracefully shutting down
+2023/09/02 06:14:30 [notice] 29#29: gracefully shutting down
+2023/09/02 06:14:30 [notice] 30#30: gracefully shutting down
+2023/09/02 06:14:30 [notice] 31#31: gracefully shutting down
+2023/09/02 06:14:30 [notice] 29#29: exiting
+2023/09/02 06:14:30 [notice] 32#32: gracefully shutting down
+2023/09/02 06:14:30 [notice] 30#30: exiting
+2023/09/02 06:14:30 [notice] 31#31: exiting
+2023/09/02 06:14:30 [notice] 33#33: gracefully shutting down
+2023/09/02 06:14:30 [notice] 32#32: exiting
+2023/09/02 06:14:30 [notice] 35#35: gracefully shutting down
+2023/09/02 06:14:30 [notice] 34#34: gracefully shutting down
+2023/09/02 06:14:30 [notice] 31#31: exit
+2023/09/02 06:14:30 [notice] 29#29: exit
+2023/09/02 06:14:30 [notice] 33#33: exiting
+2023/09/02 06:14:30 [notice] 36#36: gracefully shutting down
+2023/09/02 06:14:30 [notice] 39#39: gracefully shutting down
+2023/09/02 06:14:30 [notice] 32#32: exit
+2023/09/02 06:14:30 [notice] 39#39: exiting
+2023/09/02 06:14:30 [notice] 35#35: exiting
+2023/09/02 06:14:30 [notice] 28#28: exiting
+2023/09/02 06:14:30 [notice] 30#30: exit
+2023/09/02 06:14:30 [notice] 33#33: exit
+2023/09/02 06:14:30 [notice] 34#34: exiting
+2023/09/02 06:14:30 [notice] 36#36: exiting
+2023/09/02 06:14:30 [notice] 39#39: exit
+2023/09/02 06:14:30 [notice] 28#28: exit
+2023/09/02 06:14:30 [notice] 35#35: exit
+2023/09/02 06:14:30 [notice] 34#34: exit
+2023/09/02 06:14:30 [notice] 36#36: exit
+2023/09/02 06:14:30 [notice] 38#38: gracefully shutting down
+2023/09/02 06:14:30 [notice] 37#37: gracefully shutting down
+2023/09/02 06:14:30 [notice] 37#37: exiting
+2023/09/02 06:14:30 [notice] 37#37: exit
+2023/09/02 06:14:30 [notice] 38#38: exiting
+2023/09/02 06:14:30 [notice] 38#38: exit
+2023/09/02 06:14:30 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2023/09/02 06:14:30 [notice] 1#1: worker process 34 exited with code 0
+2023/09/02 06:14:30 [notice] 1#1: signal 29 (SIGIO) received
+2023/09/02 06:14:31 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2023/09/02 06:14:31 [notice] 1#1: worker process 29 exited with code 0
+2023/09/02 06:14:31 [notice] 1#1: worker process 30 exited with code 0
+2023/09/02 06:14:31 [notice] 1#1: worker process 32 exited with code 0
+2023/09/02 06:14:31 [notice] 1#1: worker process 33 exited with code 0
+2023/09/02 06:14:31 [notice] 1#1: worker process 35 exited with code 0
+2023/09/02 06:14:31 [notice] 1#1: worker process 36 exited with code 0
+2023/09/02 06:14:31 [notice] 1#1: worker process 37 exited with code 0
+2023/09/02 06:14:31 [notice] 1#1: worker process 38 exited with code 0
+2023/09/02 06:14:31 [notice] 1#1: worker process 39 exited with code 0
+2023/09/02 06:14:31 [notice] 1#1: signal 29 (SIGIO) received
+2023/09/02 06:14:31 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2023/09/02 06:14:31 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2023/09/02 06:14:31 [notice] 1#1: worker process 28 exited with code 0
+2023/09/02 06:14:31 [notice] 1#1: worker process 31 exited with code 0
+2023/09/02 06:14:31 [notice] 1#1: exit
+2023/09/02 06:14:31 [emerg] 1#1: "location" directive is not allowed here in /etc/nginx/conf.d/default.conf:13
+2023/09/02 06:16:18 [notice] 1#1: using the "epoll" event method
+2023/09/02 06:16:18 [notice] 1#1: nginx/1.24.0
+2023/09/02 06:16:18 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+2023/09/02 06:16:18 [notice] 1#1: OS: Linux 5.4.72-microsoft-standard-WSL2
+2023/09/02 06:16:18 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2023/09/02 06:16:18 [notice] 1#1: start worker processes
+2023/09/02 06:16:18 [notice] 1#1: start worker process 28
+2023/09/02 06:16:18 [notice] 1#1: start worker process 29
+2023/09/02 06:16:18 [notice] 1#1: start worker process 30
+2023/09/02 06:16:18 [notice] 1#1: start worker process 31
+2023/09/02 06:16:18 [notice] 1#1: start worker process 32
+2023/09/02 06:16:18 [notice] 1#1: start worker process 33
+2023/09/02 06:16:18 [notice] 1#1: start worker process 34
+2023/09/02 06:16:18 [notice] 1#1: start worker process 35
+2023/09/02 06:16:18 [notice] 1#1: start worker process 36
+2023/09/02 06:16:18 [notice] 1#1: start worker process 37
+2023/09/02 06:16:18 [notice] 1#1: start worker process 38
+2023/09/02 06:16:18 [notice] 1#1: start worker process 39
+2023/09/02 06:16:27 [error] 29#29: *2 open() "/public/image/10435.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10435.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 28#28: *1 open() "/public/image/10434.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10434.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 28#28: *1 open() "/public/image/10433.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10433.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 29#29: *2 open() "/public/image/10430.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10430.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 28#28: *1 open() "/public/image/10431.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10431.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 29#29: *2 open() "/public/image/10432.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10432.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 28#28: *1 open() "/public/image/10429.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10429.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 29#29: *2 open() "/public/image/10427.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10427.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 28#28: *1 open() "/public/image/10424.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10424.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 29#29: *2 open() "/public/image/10428.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10428.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 30#30: *4 open() "/public/image/10425.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10425.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 30#30: *4 open() "/public/image/10426.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10426.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 29#29: *2 open() "/public/image/10422.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10422.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 28#28: *1 open() "/public/image/10423.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10423.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 30#30: *4 open() "/public/image/10421.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10421.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 28#28: *1 open() "/public/image/10420.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10420.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 29#29: *2 open() "/public/image/10418.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10418.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 30#30: *4 open() "/public/image/10419.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10419.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 29#29: *2 open() "/public/image/10417.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10417.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:27 [error] 28#28: *1 open() "/public/image/10416.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10416.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 28#28: *1 open() "/public/image/10435.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10435.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 29#29: *2 open() "/public/image/10434.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10434.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 29#29: *2 open() "/public/image/10433.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10433.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 28#28: *1 open() "/public/image/10430.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10430.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 30#30: *4 open() "/public/image/10431.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10431.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 31#31: *6 open() "/public/image/10432.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10432.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 32#32: *7 open() "/public/image/10429.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10429.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 33#33: *8 open() "/public/image/10427.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10427.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 32#32: *7 open() "/public/image/10428.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10428.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 30#30: *4 open() "/public/image/10425.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10425.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 31#31: *6 open() "/public/image/10424.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10424.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 33#33: *8 open() "/public/image/10426.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10426.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 28#28: *1 open() "/public/image/10423.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10423.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 32#32: *7 open() "/public/image/10422.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10422.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 30#30: *4 open() "/public/image/10420.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10420.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 31#31: *6 open() "/public/image/10421.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10421.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 29#29: *2 open() "/public/image/10418.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10418.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 29#29: *2 open() "/public/image/10419.jpg" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10419.jpg HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 31#31: *6 open() "/public/image/10417.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10417.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/09/02 06:16:30 [error] 30#30: *4 open() "/public/image/10416.png" failed (2: No such file or directory), client: 172.31.0.1, server: , request: "GET /image/10416.png HTTP/1.1", host: "localhost", referrer: "http://localhost/"

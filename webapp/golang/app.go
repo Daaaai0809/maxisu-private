@@ -179,7 +179,6 @@ func makePosts(results []Post, csrfToken string, allComments bool) ([]Post, erro
 	
 	// TODO: N + 1改善
 	for _, p := range results {
-		// コメントのindex, comments_post_id_idxを使ってコメント数を取得する
 		err := db.Get(&p.CommentCount, "SELECT COUNT(*) AS `count` FROM `comments` WHERE `post_id` = ?", p.ID)
 		if err != nil {
 			return nil, err
@@ -526,7 +525,33 @@ func getPosts(w http.ResponseWriter, r *http.Request) {
 	}
 
 	results := []Post{}
-	err = db.Select(&results, "SELECT `id`, `user_id`, `body`, `mime`, `created_at` FROM `posts` WHERE `created_at` <= ? ORDER BY `created_at` DESC", t.Format(ISO8601Format))
+	err = db.Select(&results, "SELECT
+		p.id AS post_id,
+		p.user_id,
+		p.body,
+		p.mime,
+		p.created_at AS post_created_at,
+		COUNT(c.id) AS comment_count,
+		u.id AS user_id,
+		u.account_name,
+		u.authority,
+		u.del_flg,
+		u.created_at AS user_created_at,
+		c.id AS comment_id,
+		c.comment,
+		c.created_at AS comment_created_at
+		FROM
+		posts p
+		LEFT JOIN
+		comments c ON p.id = c.post_id
+		LEFT JOIN
+		users u ON c.user_id = u.id
+		WHERE
+		p.created_at <= ?
+		GROUP BY
+		p.id, c.id
+		ORDER BY
+		p.created_at DESC, c.created_at DESC", t.Format(ISO8601Format))
 	if err != nil {
 		log.Print(err)
 		return
